@@ -26,6 +26,21 @@ func (s *server) GetStudent(ctx context.Context, req *pb.StudentRequest) (*pb.St
 	}, nil
 }
 
+func (s *server) ListStudents(ctx context.Context, req *pb.Empty) (*pb.StudentListResponse, error) {
+
+	log.Println("ListStudents called")
+
+	students := []*pb.StudentResponse{
+		{Id: 1, Name: "Alice", Major: "CS", Email: "alice@mail.com"},
+		{Id: 2, Name: "Bob", Major: "IT", Email: "bob@mail.com"},
+		{Id: 3, Name: "Charlie", Major: "SE", Email: "charlie@mail.com"},
+	}
+
+	return &pb.StudentListResponse{
+		Student: students,
+	}, nil
+}
+
 func main() {
 	lis, err := net.Listen("tcp", ":50051")
 	if err != nil {

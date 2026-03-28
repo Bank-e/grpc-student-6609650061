@@ -6,6 +6,7 @@ option go_package = "./studentpb";
 
 service StudentService {
   rpc GetStudent (StudentRequest) returns (StudentResponse);
+  rpc ListStudents (Empty) returns (StudentListResponse);
 }
 
 message StudentRequest {
@@ -17,4 +18,10 @@ message StudentResponse {
   string name = 2;
   string major = 3;
   string email = 4;
+}
+
+message Empty {}
+
+message StudentListResponse {
+  repeated StudentResponse student = 1;
 }

@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+
 	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Could not connect: %v", err)
@@ -21,17 +22,26 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := client.GetStudent(ctx, &pb.StudentRequest{
+	// GetStudent
+	res1, err := client.GetStudent(ctx, &pb.StudentRequest{
 		Id: 101,
 	})
-
 	if err != nil {
 		log.Fatalf("Error calling GetStudent: %v", err)
 	}
 
-	log.Printf("Student Info:")
-	log.Printf("ID: %d", res.Id)
-	log.Printf("Name: %s", res.Name)
-	log.Printf("Major: %s", res.Major)
-	log.Printf("Email: %s", res.Email)
+	log.Println("Single Student:")
+	log.Printf("ID: %d | Name: %s", res1.Id, res1.Name)
+
+	// ListStudents (Task 1)
+	res2, err := client.ListStudents(ctx, &pb.Empty{})
+	if err != nil {
+		log.Fatalf("Error calling ListStudents: %v", err)
+	}
+
+	log.Println("Student List:")
+	for _, s := range res2.Student {
+		log.Printf("ID: %d | Name: %s | Major: %s | Email: %s",
+			s.Id, s.Name, s.Major, s.Email)
+	}
 }
