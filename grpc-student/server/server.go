@@ -31,9 +31,9 @@ func (s *server) ListStudents(ctx context.Context, req *pb.Empty) (*pb.StudentLi
 	log.Println("ListStudents called")
 
 	students := []*pb.StudentResponse{
-		{Id: 1, Name: "Alice", Major: "CS", Email: "alice@mail.com"},
-		{Id: 2, Name: "Bob", Major: "IT", Email: "bob@mail.com"},
-		{Id: 3, Name: "Charlie", Major: "SE", Email: "charlie@mail.com"},
+		{Id: 1, Name: "Alice", Major: "CS", Email: "alice@mail.com", Phone: "0811111111"},
+		{Id: 2, Name: "Bob", Major: "IT", Email: "bob@mail.com", Phone: "0822222222"},
+		{Id: 3, Name: "Charlie", Major: "SE", Email: "charlie@mail.com", Phone: "0833333333"},
 	}
 
 	return &pb.StudentListResponse{

@@ -41,7 +41,7 @@ func main() {
 
 	log.Println("Student List:")
 	for _, s := range res2.Student {
-		log.Printf("ID: %d | Name: %s | Major: %s | Email: %s",
-			s.Id, s.Name, s.Major, s.Email)
+		log.Printf("ID: %d | Name: %s | Major: %s | Email: %s | Phone: %s",
+			s.Id, s.Name, s.Major, s.Email, s.Phone)
 	}
 }
